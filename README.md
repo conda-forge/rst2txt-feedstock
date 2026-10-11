@@ -3,11 +3,13 @@ About rst2txt-feedstock
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/rst2txt-feedstock/blob/main/LICENSE.txt)
 
-Home: https://github.com/stephenfin/rst2txt
+Home: https://pypi.org/project/rst2txt
 
 Package license: BSD-2-Clause
 
 Summary: Convert reStructuredText to plain text
+
+Development: https://github.com/stephenfin/rst2txt
 
 Current build status
 ====================
