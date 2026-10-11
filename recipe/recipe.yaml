@@ -20,6 +20,7 @@ build:
     entry_points:
       - rst2txt = rst2txt:main
   script:
+    - ${{ PYTHON }} -c "import shutil; shutil.rmtree('tools')"
     - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check --check-build-dependencies
 
 requirements:
