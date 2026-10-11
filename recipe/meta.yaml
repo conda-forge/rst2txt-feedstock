@@ -1,15 +1,15 @@
-{% set version = "1.1.0" %}
+{% set version = "1.2.0" %}
 
 package:
   name: rst2txt
   version: {{ version }}
 
 source:
-  url: https://pypi.org/packages/source/r/rst2txt/rst2txt-{{ version }}.tar.gz
-  sha256: ded9e4fb2686f039eb06c0608980fd13982998ce365a9d008a495649ed85f7cd
+  url: https://files.pythonhosted.org/packages/source/r/rst2txt/rst2txt-{{ version }}.tar.gz
+  sha256: d3f2cfa9fc4afdc6c8ea88a1a6157077915f723c92d48618bd2690b813f19e2f
 
 build:
-  number: 1
+  number: 0
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   entry_points:
