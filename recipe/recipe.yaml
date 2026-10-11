@@ -1,0 +1,65 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  version: "1.3.0"
+  python_check_max: "3.14"
+
+package:
+  name: rst2txt
+  version: ${{ version }}
+
+source:
+  url: https://files.pythonhosted.org/packages/source/r/rst2txt/rst2txt-${{ version }}.tar.gz
+  sha256: 66852caf58b7a5cbf8503b866d08f9175b98d6a870bda9cb882afae3239903de
+
+build:
+  number: 0
+  noarch: python
+  python:
+    entry_points:
+      - rst2txt = rst2txt:main
+  script:
+    - ${{ PYTHON }} -c "import shutil; shutil.rmtree('tools')"
+    - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check --check-build-dependencies
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools
+    - setuptools-scm
+  run:
+    - docutils >=0.11
+    - pygments
+    - python >=${{ python_min }}
+
+tests:
+  - package_contents:
+      strict: true
+      site_packages:
+        - rst2txt/**
+        - rst2txt-${{ version }}.dist-info/**
+  - python:
+      imports: rst2txt
+      pip_check: true
+      python_version:
+        - ${{ python_min }}.*
+        - ${{ python_check_max }}.*
+  - requirements:
+      run:
+        - pip
+        - python ${{ python_min }}.*
+    script:
+      - rst2txt --help
+
+about:
+  summary: Convert reStructuredText to plain text
+  license: BSD-2-Clause
+  license_file: LICENSE
+  homepage: https://pypi.org/project/rst2txt
+  repository: https://github.com/stephenfin/rst2txt
+
+extra:
+  recipe-maintainers:
+    - bollwyvl
